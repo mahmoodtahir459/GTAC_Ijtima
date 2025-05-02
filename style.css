@@ -1,0 +1,289 @@
+/* style.css */
+:root {
+    --gold: #FFD700;
+    --dark-gold: #FFC107;
+    --black: #1a1a1a;
+    --white: #ffffff;
+    --overlay: rgba(0, 0, 0, 0.7);
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--white);
+    background-image: url('Regional\ Ijtima\ 2025\ Sample\ Poster\ \(4\).png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay);
+    z-index: -1;
+  }
+  
+  header {
+    text-align: center;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s ease-out;
+  }
+  
+  .logo {
+    width: 300px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+  }
+  
+  .header-text h1 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--gold);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  }
+  
+  .header-text h2 {
+    margin: 0.5rem 0 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .divider {
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 1rem auto;
+  }
+  
+  .yellow-bar {
+    background-color: var(--dark-gold);
+    color: var(--black);
+    padding: 0.8rem 1rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .content {
+    padding: 3rem 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .schedule-card {
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+  }
+  
+  .schedule-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .schedule-card h3::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0.5rem auto;
+  }
+  
+  .event-day {
+    margin-bottom: 1.5rem;
+    padding: 1.2rem;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 10px;
+    border-left: 4px solid var(--gold);
+  }
+  
+  .day-marker {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .event-day p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+  
+  .event-day p strong {
+    color: var(--gold);
+    font-weight: 600;
+  }
+  
+  .register-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: var(--gold);
+    color: var(--black);
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .register-button:hover {
+    background-color: #ffcc00;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .footer-section {
+    flex: 1;
+    min-width: 250px;
+    text-align: left;
+  }
+  
+  .footer-section h4 {
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .footer-section p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .copyright {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .header-text h1 {
+      font-size: 1.8rem;
+    }
+    
+    .header-text h2 {
+      font-size: 1.2rem;
+    }
+    
+    .logo {
+      width: 250px;
+    }
+    
+    .yellow-bar {
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .schedule-card {
+      padding: 1.5rem;
+    }
+    
+    .footer-content {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .footer-section {
+      text-align: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header-text h1 {
+      font-size: 1.5rem;
+    }
+    
+    .header-text h2 {
+      font-size: 1rem;
+    }
+    
+    .logo {
+      width: 200px;
+    }
+    
+    .yellow-bar span {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+  }
