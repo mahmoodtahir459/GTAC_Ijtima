@@ -65,8 +65,12 @@
               const locationElement = parentDiv.querySelector('.location');
               
               // Update time and location
-              if (timeElement) {
+              if(timeElement && completed === 'Y' ){
+                timeElement.innerHTML = `Competition is Over`;
+              } else  if (timeElement && started !=='Y') {
                 timeElement.innerHTML = `Starts at <b>${time}</b>`;
+              } else {
+                timeElement.innerHTML = `Started`
               }
               if (locationElement) {
                 locationElement.innerHTML = `Location: <b>${location}</b>`;
