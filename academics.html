@@ -74,11 +74,11 @@
               
               // Add completion marker if completed
               if (completed === 'Y') {
-                eventElement.innerHTML += " ✅";
+                eventElement.innerHTML += " (Completed)✅";
               }
               
               // Add started marker if started
-              if (started === 'Y') {
+              if (started === 'Y' && completed==='N') {
                 eventElement.innerHTML += " (Started)";
               }
             }
