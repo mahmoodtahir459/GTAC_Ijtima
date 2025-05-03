@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khuddam Regional Ijtima</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="MAPLE-LEAF-LOGO.webp">
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <header>
+      <img class="logo" src="GTA Central - 3.png" alt="Majlis Khuddāmul Ahmadiyya Logo" />
+      <div class="header-text">
+        <h1>KHUDDAM REGIONAL IJTIMĀ' 2025</h1>
+        <h2>Academic Schedule</h2>
+        <div class="divider"></div>
+      </div>
+    </header>
+    <main class="content">
+        <div class="schedule-card">
+          <div class="event-day">
+            <div class="day-marker" id="til_comp">Tilawat Competition</div>
+            <p class="time">Starts at <b>5:00 PM</b></p>
+            <p class="location">Location: <b>Multi-purpose Hall</b></p>
+            <p>Local Winners Only</p>
+          </div>
+          <div class="event-day">
+            <div class="day-marker" id="nazm_comp">Nazm Competition</div>
+            <p class="time">Starts at <b>5:00 PM</b></p>
+            <p class="location">Location: <b>Multi-purpose Hall</b></p>
+            <p>Local Winners Only</p>
+          </div>
+          <div class="event-day">
+            <div class="day-marker">Hifz-E-Hadith Competition</div>
+            <p>Starts at <b>5:00 PM</b></p>
+            <p>Location: <b>Office 101</b></p>
+            <p>Open to All</p>
+            <a class="register-button" href="" target="_blank">Register Now</a>
+          </div>
+        </div>
+      </main>
+      <script type="text/javascript">
+        function parseGoogleSheetData(data) {
+          const rows = data.table.rows;
+          
+          rows.forEach(row => {
+            const id = row.c[0]?.v;       // First column (til_comp, nazm_comp)
+            const name = row.c[1]?.v;     // Second column (Tilawat, Nazm)
+            const time = row.c[2]?.v;     // Third column (4:30 PM, 5:00 PM)
+            const started = row.c[3]?.v;  // Fourth column (Y/N)
+            const location = row.c[4]?.v; // Fifth column (Office 101, Multi-Purpose Hall)
+            const completed = row.c[5]?.v;// Sixth column (Y/N)
+            
+            const eventElement = document.getElementById(id);
+            if (eventElement) {
+              // Update the event name
+              eventElement.textContent = name + ' Competition';
+              
+              // Find the time and location elements
+              const parentDiv = eventElement.parentElement;
+              const timeElement = parentDiv.querySelector('.time');
+              const locationElement = parentDiv.querySelector('.location');
+              
+              // Update time and location
+              if (timeElement) {
+                timeElement.innerHTML = `Starts at <b>${time}</b>`;
+              }
+              if (locationElement) {
+                locationElement.innerHTML = `Location: <b>${location}</b>`;
+              }
+              
+              // Add completion marker if completed
+              if (completed === 'Y') {
+                eventElement.innerHTML += " ✅";
+              }
+              
+              // Add started marker if started
+              if (started === 'Y') {
+                eventElement.innerHTML += " (Started)";
+              }
+            }
+          });
+        }
+
+        async function loadGoogleSheet() {
+          const sheetId = "1q38TyLZxXbOCcfVCr9EyjWueC6E-41ohNZ9aJAHCqAc";
+          // Use the gviz endpoint which works better with CORS
+          const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`;
+          
+          try {
+            const response = await fetch(url);
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            
+            const csvText = await response.text();
+            const rows = csvText.split('\n').filter(row => row.trim() !== '');
+            
+            if (rows.length === 0) {
+              throw new Error("No data found in the sheet");
+            }
+            
+            // Extract headers (first row)
+            const headers = rows[0].split(',').map(header => header.trim());
+            
+            // Process data rows
+            const data = rows.slice(1).map(row => {
+              // Handle quoted CSV values properly
+              const values = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
+              return headers.reduce((obj, header, index) => {
+                obj[header] = (values[index] || '').trim().replace(/^"|"$/g, '');
+                return obj;
+              }, {});
+            });
+            
+            // Transform into the format expected by parseGoogleSheetData
+            const transformedData = {
+              table: {
+                rows: data.map(row => ({
+                  c: headers.map(header => ({ v: row[header] }))
+                }))
+              }
+            };
+            
+            parseGoogleSheetData(transformedData);
+          } catch (error) {
+            console.error('Error loading Google Sheet:', error);
+            // Show a user-friendly error message
+            const errorElement = document.createElement('div');
+            errorElement.className = 'error-message';
+            errorElement.innerHTML = `
+              <p>⚠️ Could not load live schedule data</p>
+              <p>Showing default schedule instead</p>
+            `;
+            document.querySelector('main').prepend(errorElement);
+          }
+        }
+
+        // Load the sheet when the page loads
+        document.addEventListener('DOMContentLoaded', loadGoogleSheet);
+      </script>
+</body>
+</html>

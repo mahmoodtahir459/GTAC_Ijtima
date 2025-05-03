@@ -17,7 +17,7 @@
      margin: 0;
     font-family: 'Montserrat', sans-serif;
     color: var(--white);
-    background-image: url('Regional\ Ijtima\ 2025\ Sample\ Poster\ \(4\).png');
+    background-image: url('background.png');
     background-size:cover; /* Full height, proportional width */
     background-position: center;
     background-repeat: no-repeat;
@@ -87,7 +87,9 @@
   
   .yellow-bar {
     background-color: var(--dark-gold);
-    color: var(--black);
+    color: white;
+    text-decoration: none;
+    text-shadow:0.1px 3px 2px rgba(0, 0, 0, 0.3);
     padding: 0.8rem 1rem;
     font-weight: 600;
     display: flex;
