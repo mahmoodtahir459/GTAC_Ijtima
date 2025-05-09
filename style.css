@@ -1,8 +1,8 @@
 /* style.css */
 :root {
-    --gold: #FFD700;
-    --dark-gold: #FFC107;
-    --black: #1a1a1a;
+    --gold: #F9BA32;
+    --dark-gold: #626D80;
+    --black: #2F3C50;
     --white: #ffffff;
     --overlay: rgba(0, 0, 0, 0.0); 
   }
@@ -47,7 +47,7 @@
     flex-direction: column;
     align-items: center;
     animation: fadeIn 1s ease-out;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.0);
     backdrop-filter: blur(2px);
   }
   
@@ -70,8 +70,8 @@
   
   .header-text h2 {
     margin: 0.5rem 0 1rem;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 2.2rem;
+    font-weight: 700;
     color: var(--white);
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -86,18 +86,15 @@
   }
   
   .yellow-bar {
-    background-color: var(--dark-gold);
-    color: white;
     text-decoration: none;
-    text-shadow:0.1px 3px 2px rgba(0, 0, 0, 0.3);
     padding: 0.8rem 1rem;
     font-weight: 600;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap:40px;
     font-size: 1.1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
   }
   
   .content {
