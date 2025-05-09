@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Khuddam Regional Ijtima Registration</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .form-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+    .form-container h2 {
+      text-align: center;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+      font-weight: 600;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: #fff;
+      color: #000;
+    }
+    .form-group input::placeholder {
+      color: #888;
+    }
+    .submit-button {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background-color: var(--gold);
+      color: var(--black);
+      font-size: 1.2rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    }
+    .submit-button:hover {
+      background-color: #ffcc00;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+    }
+    @media (max-width: 480px) {
+      .form-container {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Khuddam Regional Ijtima 2025 Registration</h2>
+    <form id="ijtimaForm">
+      <div class="form-group">
+        <label for="member-code">Member Code (5 digits) *</label>
+        <input type="text" id="member-code" name="entry.376214919" placeholder="e.g., 12345" pattern="\d{5}" required>
+      </div>
+      <div class="form-group">
+        <label for="first-name">First Name *</label>
+        <input type="text" id="first-name" name="entry.2122384170" placeholder="Your first name" required>
+      </div>
+      <div class="form-group">
+        <label for="last-name">Last Name *</label>
+        <input type="text" id="last-name" name="entry.530290089" placeholder="Your last name" required>
+      </div>
+      <div class="form-group">
+        <label for="majlis">Majlis *</label>
+        <select id="majlis" name="entry.1592275443" required>
+          <option value="" disabled selected>Select your Majlis</option>
+          <option value="Ahmadiyya Abode of Peace — Halqa Tahir">Ahmadiyya Abode of Peace — Halqa Tahir</option>
+          <option value="Ahmadiyya Abode of Peace — Halqa Masroor">Ahmadiyya Abode of Peace — Halqa Masroor</option>
+          <option value="Emery Village">Emery Village</option>
+          <option value="Rexdale">Rexdale</option>
+          <option value="Weston Islington">Weston Islington</option>
+          <option value="Weston North East">Weston North East</option>
+          <option value="Weston North West">Weston North West</option>
+          <option value="Weston South">Weston South</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="email">Email (optional)</label>
+        <input type="email" id="email" name="entry.1129546309" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number (optional)</label>
+        <input type="tel" id="phone" name="entry.14990707" placeholder="e.g., 416-123-4567">
+      </div>
+      <button type="submit" class="submit-button">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('ijtimaForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const formData = new FormData(form);
+
+      fetch('https://docs.google.com/forms/d/e/1FAIpQLSe6dZckl4CZFyQNSjNcPLVQWWtEcqQtJL9aDGZzUHhWD0Va3g/formResponse', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      }).then(() => {
+        alert("Registered Successfully. Please note you still have to register on both days of the event. Jazakallah!");
+        window.location.href = "index.html";
+      }).catch(() => {
+        alert("There was an error submitting the form. Please try again later.");
+      });
+    });
+  </script>
+</body>
+</html>
