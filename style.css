@@ -42,7 +42,7 @@
   
   header {
     text-align: center;
-    padding: 2rem 1rem;
+   
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,14 +86,7 @@
   }
   
   .yellow-bar {
-    text-decoration: none;
-    padding: 0.8rem 1rem;
-    font-weight: 600;
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    gap:40px;
-    font-size: 1.1rem;
+
     
   }
   
@@ -104,19 +97,15 @@
   }
   
   .schedule-card {
-    background: rgba(0, 0, 0, 0.75);
-    border-radius: 15px;
-    padding: 2rem;
     max-width: 600px;
     width: 100%;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 215, 0, 0.3);
+  
   }
   
   .schedule-card h3 {
     font-family: 'Playfair Display', serif;
-    color: var(--gold);
-    font-size: 1.8rem;
+    color: var(--white);
+    font-size: 2.5rem;
     margin-bottom: 1.5rem;
     text-align: center;
     position: relative;
@@ -134,11 +123,12 @@
   .event-day {
     margin-bottom: 1.5rem;
     padding: 1.2rem;
-    background: rgba(255, 215, 0, 0.1);
-    box-shadow: 0 5px 2px  rgba(249, 186, 50,1);
+    background: var(--gold);
+    color: var(--black);
+    box-shadow: 0 5px 2px  rgba(0, 0, 0, 0.4);
     border-radius: 15px;
-      cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .event-day:hover {
@@ -148,18 +138,19 @@
   
   .day-marker {
     display: inline-block;
-    background: var(--gold);
-    color: var(--black);
+    background: black;
+    color: var(--gold);
     padding: 0.3rem 0.8rem;
+    border: 2px solid var(--gold);
     border-radius: 20px;
     font-weight: 600;
     margin-bottom: 0.8rem;
-    font-size: 0.9rem;
+    font-size: 1.0rem;
   }
   
   .event-day p {
     margin: 0.5rem 0;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
   }
   
   .event-day p strong {
@@ -198,6 +189,7 @@
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 1));
     padding: 2rem 1rem;
     text-align: center;
+    color: var(--white);
   }
   
   .footer-content {
