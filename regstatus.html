@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Majlis Registration Count</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      padding: 2rem;
+    }
+    canvas {
+      max-width: 900px;
+      margin: auto;
+    }
+    h2, h3 {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Majlis Registration Count</h2>
+  <h3 id="totalCount">Loading total...</h3>
+  <canvas id="majlisChart"></canvas>
+
+  <script>
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(loadData);
+
+    function loadData() {
+      const sheetURL = 'https://docs.google.com/spreadsheets/d/1l2uFCe9WD7LHY1ADWTwZz6X1-2wrMSmG_Lgs5iK47H4/gviz/tq?sheet=Form%20Responses%201';
+      fetch(sheetURL)
+        .then(res => res.text())
+        .then(rep => {
+          const json = JSON.parse(rep.substr(47).slice(0, -2));
+          const rows = json.table.rows;
+
+          const majlisCounts = {};
+          let totalResponses = 0;
+
+          rows.forEach(row => {
+            const majlis = row.c[4]?.v?.trim();
+            if (majlis) {
+              majlisCounts[majlis] = (majlisCounts[majlis] || 0) + 1;
+              totalResponses++;
+            }
+          });
+
+          // Sort Majlis by count descending
+          const sortedEntries = Object.entries(majlisCounts).sort((a, b) => b[1] - a[1]);
+          const labels = sortedEntries.map(entry => entry[0]);
+          const values = sortedEntries.map(entry => entry[1]);
+
+          // Update total count
+          document.getElementById('totalCount').textContent = `Total Responses: ${totalResponses}`;
+
+          // Draw the chart
+          new Chart(document.getElementById('majlisChart'), {
+            type: 'bar',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Number of Members',
+                data: values,
+                backgroundColor: 'rgba(249, 186, 50, 0.8)',
+                borderColor: '#2F3C50',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    stepSize: 1
+                  }
+                }
+              }
+            }
+          });
+        });
+    }
+  </script>
+</body>
+</html>
