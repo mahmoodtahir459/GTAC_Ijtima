@@ -31,7 +31,7 @@
     google.charts.setOnLoadCallback(loadData);
 
     function loadData() {
-      const sheetURL = 'https://docs.google.com/spreadsheets/d/1l2uFCe9WD7LHY1ADWTwZz6X1-2wrMSmG_Lgs5iK47H4/gviz/tq?sheet=Form%20Responses%201';
+      const sheetURL = 'https://docs.google.com/spreadsheets/d/1Q6jOTWIOVmqq8Uf4I9bzIN2iByMxKf1ZfXtv6LCslg8/gviz/tq?sheet=Form%20Responses%201';
       fetch(sheetURL)
         .then(res => res.text())
         .then(rep => {
