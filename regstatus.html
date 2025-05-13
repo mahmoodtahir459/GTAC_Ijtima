@@ -35,14 +35,15 @@
     }
 
     .chart-container {
-      max-width: 900px;
+      width: 100%;
+      height: 300px; /* Fixed height for responsiveness */
+      max-width: 100%;
       margin: 0 auto;
-      overflow-x: auto;
-      padding: 0 1rem;
     }
 
     canvas {
-      min-width: 600px;
+      width: 100% !important; /* Make the chart fill the container */
+      height: 100% !important;
     }
   </style>
 </head>
@@ -86,7 +87,7 @@
 
           // Draw the chart
           new Chart(document.getElementById('majlisChart'), {
-            type: 'bar',
+            type: 'bar', // Vertical bars
             data: {
               labels: labels,
               datasets: [{
@@ -98,9 +99,8 @@
               }]
             },
             options: {
-              indexAxis: 'y', // Horizontal bar chart for easier label visibility
               responsive: true,
-              maintainAspectRatio: false,
+              maintainAspectRatio: true,
               plugins: {
                 legend: {
                   display: false
@@ -116,7 +116,8 @@
                 },
                 y: {
                   ticks: {
-                    autoSkip: false
+                    autoSkip: true,
+                    maxTicksLimit: 10
                   }
                 }
               }
