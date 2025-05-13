@@ -1,33 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Majlis Registration Count</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: #f4f4f4;
+      margin: 0;
+      padding: 2rem 1rem;
+      color: #2F3C50;
       text-align: center;
-      padding: 2rem;
     }
-    canvas {
+
+    h2 {
+      font-weight: 600;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-weight: 400;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #555;
+    }
+
+    .chart-container {
       max-width: 900px;
-      margin: auto;
+      margin: 0 auto;
+      overflow-x: auto;
+      padding: 0 1rem;
     }
-    h2, h3 {
-      margin-bottom: 20px;
+
+    canvas {
+      min-width: 600px;
     }
   </style>
 </head>
 <body>
   <h2>Majlis Registration Count</h2>
   <h3 id="totalCount">Loading total...</h3>
-  <canvas id="majlisChart"></canvas>
+  <div class="chart-container">
+    <canvas id="majlisChart"></canvas>
+  </div>
 
   <script>
-    google.charts.load('current', {'packages':['corechart']});
+    google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(loadData);
 
     function loadData() {
@@ -65,18 +92,31 @@
               datasets: [{
                 label: 'Number of Members',
                 data: values,
-                backgroundColor: 'rgba(249, 186, 50, 0.8)',
+                backgroundColor: 'rgba(249, 186, 50, 0.85)',
                 borderColor: '#2F3C50',
                 borderWidth: 1
               }]
             },
             options: {
+              indexAxis: 'y', // Horizontal bar chart for easier label visibility
               responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: false
+                }
+              },
               scales: {
-                y: {
+                x: {
                   beginAtZero: true,
                   ticks: {
+                    precision: 0,
                     stepSize: 1
+                  }
+                },
+                y: {
+                  ticks: {
+                    autoSkip: false
                   }
                 }
               }
