@@ -228,6 +228,9 @@
                       return `${context.parsed.y} members`;
                     }
                   }
+                },
+                datalabels: {
+                  display: false // This will be overridden by our custom plugin
                 }
               },
               scales: {
@@ -267,6 +270,31 @@
               animation: {
                 duration: 1000,
                 easing: 'easeOutQuart'
+              },
+              // Custom plugin to display values inside bars
+              plugins: {
+                customValueInBars: {
+                  id: 'customValueInBars',
+                  afterDatasetsDraw(chart, args, options) {
+                    const {ctx, data, chartArea: {top, bottom, left, right, width, height}, scales: {x, y}} = chart;
+                    
+                    ctx.font = 'bold 12px Norwester';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    
+                    data.datasets.forEach((dataset, i) => {
+                      chart.getDatasetMeta(i).data.forEach((bar, index) => {
+                        const value = dataset.data[index];
+                        if (value > 0) { // Only show label if value is greater than 0
+                          const xPos = bar.x;
+                          const yPos = bar.y - 15; // Position above center of bar
+                          ctx.fillStyle = '#2F3C50'; // Dark color for contrast
+                          ctx.fillText(value, xPos, yPos);
+                        }
+                      });
+                    });
+                  }
+                }
               }
             }
           });
